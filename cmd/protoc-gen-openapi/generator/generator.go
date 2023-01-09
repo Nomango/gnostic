@@ -30,8 +30,8 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 	any_pb "google.golang.org/protobuf/types/known/anypb"
 
-	wk "github.com/google/gnostic/cmd/protoc-gen-openapi/generator/wellknown"
-	v3 "github.com/google/gnostic/openapiv3"
+	wk "github.com/c1ay/gnostic/cmd/protoc-gen-openapi/generator/wellknown"
+	v3 "github.com/c1ay/gnostic/openapiv3"
 )
 
 type Configuration struct {
@@ -438,7 +438,7 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 	d *v3.Document,
 	operationID string,
 	tagName string,
-	description string,
+	summary string,
 	defaultHost string,
 	path string,
 	bodyField string,
@@ -600,7 +600,7 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 	// Create the operation.
 	op := &v3.Operation{
 		Tags:        []string{tagName},
-		Description: description,
+		Summary:     summary,
 		OperationId: operationID,
 		Parameters:  parameters,
 		Responses:   responses,
@@ -646,11 +646,14 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 				}
 			}
 		}
-
+		required := false
+		if requestSchema != nil {
+			required = true
+		}
 		op.RequestBody = &v3.RequestBodyOrReference{
 			Oneof: &v3.RequestBodyOrReference_RequestBody{
 				RequestBody: &v3.RequestBody{
-					Required: true,
+					Required: required,
 					Content: &v3.MediaTypes{
 						AdditionalProperties: []*v3.NamedMediaType{
 							{
@@ -664,6 +667,7 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 				},
 			},
 		}
+
 	}
 	return op, path
 }
