@@ -382,7 +382,7 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 	d *v3.Document,
 	operationID string,
 	tagName string,
-	description string,
+	summary string,
 	defaultHost string,
 	path string,
 	bodyField string,
@@ -544,7 +544,7 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 	// Create the operation.
 	op := &v3.Operation{
 		Tags:        []string{tagName},
-		Description: description,
+		Summary:     summary,
 		OperationId: operationID,
 		Parameters:  parameters,
 		Responses:   responses,
