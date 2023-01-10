@@ -590,11 +590,14 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 				}
 			}
 		}
-
+		required := false
+		if requestSchema != nil {
+			required = true
+		}
 		op.RequestBody = &v3.RequestBodyOrReference{
 			Oneof: &v3.RequestBodyOrReference_RequestBody{
 				RequestBody: &v3.RequestBody{
-					Required: true,
+					Required: required,
 					Content: &v3.MediaTypes{
 						AdditionalProperties: []*v3.NamedMediaType{
 							{
@@ -608,6 +611,7 @@ func (g *OpenAPIv3Generator) buildOperationV3(
 				},
 			},
 		}
+
 	}
 	return op, path
 }
