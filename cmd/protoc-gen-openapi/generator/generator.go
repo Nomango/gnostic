@@ -30,8 +30,8 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 	any_pb "google.golang.org/protobuf/types/known/anypb"
 
-	wk "github.com/c1ay/gnostic/cmd/protoc-gen-openapi/generator/wellknown"
-	v3 "github.com/c1ay/gnostic/openapiv3"
+	wk "github.com/Nomango/gnostic/cmd/protoc-gen-openapi/generator/wellknown"
+	v3 "github.com/Nomango/gnostic/openapiv3"
 )
 
 type Configuration struct {

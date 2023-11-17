@@ -29,7 +29,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/c1ay/gnostic/jsonschema"
+	"github.com/Nomango/gnostic/jsonschema"
 )
 
 // convert the first character of a string to lower case

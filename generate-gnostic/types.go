@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/c1ay/gnostic/jsonschema"
+	"github.com/Nomango/gnostic/jsonschema"
 )
 
 /// Type Modeling
