@@ -703,7 +703,7 @@ func (g *OpenAPIv3Generator) addPathsToDocumentV3(d *v3.Document, services []*pr
 						d, operationID, service.GoName, comment, defaultHost, path, body, inputMessage, outputMessage)
 
 					if *g.conf.OnlyExported {
-						if !strings.Contains(op.Description, "@export") {
+						if !strings.HasPrefix(op.Description, "@export") && !strings.HasPrefix(op.Summary, "@export") {
 							continue
 						}
 					}
