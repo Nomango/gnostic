@@ -43,6 +43,7 @@ type Configuration struct {
 	EnumType        *string
 	CircularDepth   *int
 	DefaultResponse *bool
+	OnlyExported    *bool
 }
 
 const (
@@ -700,6 +701,12 @@ func (g *OpenAPIv3Generator) addPathsToDocumentV3(d *v3.Document, services []*pr
 
 					op, path2 := g.buildOperationV3(
 						d, operationID, service.GoName, comment, defaultHost, path, body, inputMessage, outputMessage)
+
+					if *g.conf.OnlyExported {
+						if !strings.Contains(op.Description, "@export") {
+							continue
+						}
+					}
 
 					// Merge any `Operation` annotations with the current
 					extOperation := proto.GetExtension(method.Desc.Options(), v3.E_Operation)
