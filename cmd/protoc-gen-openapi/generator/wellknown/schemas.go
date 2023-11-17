@@ -16,7 +16,7 @@
 package wellknown
 
 import (
-	v3 "github.com/c1ay/gnostic/openapiv3"
+	v3 "github.com/Nomango/gnostic/openapiv3"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 

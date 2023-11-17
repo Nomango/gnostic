@@ -17,7 +17,7 @@ package openapi_v3
 import (
 	"errors"
 
-	"github.com/c1ay/gnostic/compiler"
+	"github.com/Nomango/gnostic/compiler"
 )
 
 // ParseDocument reads an OpenAPI v3 description from a YAML/JSON representation.

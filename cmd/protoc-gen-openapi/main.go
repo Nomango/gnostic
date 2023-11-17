@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/c1ay/gnostic/cmd/protoc-gen-openapi/generator"
+	"github.com/Nomango/gnostic/cmd/protoc-gen-openapi/generator"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/types/pluginpb"
 )
