@@ -703,6 +703,7 @@ func (g *OpenAPIv3Generator) addPathsToDocumentV3(d *v3.Document, services []*pr
 						if !strings.Contains(comment, "@export") {
 							continue
 						}
+						comment = strings.TrimSpace(strings.ReplaceAll(comment, "@export", ""))
 					}
 
 					op, path2 := g.buildOperationV3(
