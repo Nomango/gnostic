@@ -15,6 +15,8 @@
 package openapi_v3
 
 import (
+	"bytes"
+
 	"gopkg.in/yaml.v3"
 
 	"github.com/Nomango/gnostic/compiler"
@@ -38,5 +40,12 @@ func (d *Document) YAMLValue(comment string) ([]byte, error) {
 		Content:     []*yaml.Node{rawInfo},
 		HeadComment: comment,
 	}
-	return yaml.Marshal(rawInfo)
+	var buf bytes.Buffer
+	encoder := yaml.NewEncoder(&buf)
+	encoder.SetIndent(2)
+	defer encoder.Close()
+	if err := encoder.Encode(rawInfo); err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 }
