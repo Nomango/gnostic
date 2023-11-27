@@ -44,6 +44,7 @@ type Configuration struct {
 	CircularDepth   *int
 	DefaultResponse *bool
 	OnlyExported    *bool
+	Server          *string
 }
 
 const (
@@ -210,6 +211,16 @@ func (g *OpenAPIv3Generator) buildDocumentV3() *v3.Document {
 	if len(allServers) == 1 {
 		for _, path := range d.Paths.Path {
 			path.Value.Servers = nil
+		}
+	}
+
+	// Set servers from command
+	if *g.conf.Server != "" {
+		for _, server := range strings.Split(*g.conf.Server, ",") {
+			if !strings.HasPrefix(server, "http") {
+				server = "https://" + server
+			}
+			d.Servers = append(d.Servers, &v3.Server{Url: server})
 		}
 	}
 
